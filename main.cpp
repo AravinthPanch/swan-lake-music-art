@@ -16,16 +16,17 @@
 
 #include "lib/playtune.h"
 #include "songs/mspacman.h"
+#include "songs/swan.h"
 
 /*******************************************************************************
 * Functions
 ********************************************************************************/
 int main(void)
 {
-    PlayTune p0(0, PART0);
+    PlayTune p0(0, SWAN0);
     while ( p0.isPlaying()) {
         p0.playNote();
-        _delay_ms(80);
+        _delay_ms(220);
     }
     return (0);
 }
