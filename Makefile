@@ -18,21 +18,27 @@ init:
 	@rm -rf $(BUILD_DIR)
 	@mkdir $(BUILD_DIR)
 
-src_build:
+playtune_build:
 	@echo "=> Building and linking" 	
-	@avr-gcc -Os -DF_CPU=$(AVR_FREQ) -mmcu=$(MCU) -c main.cpp -o $(BUILD_DIR)/$(PROJECT_NAME).o
+	@avr-gcc -Os -DF_CPU=$(AVR_FREQ) -mmcu=$(MCU) -c playtune_main.cpp -o $(BUILD_DIR)/$(PROJECT_NAME).o
 	@avr-gcc -Os -DF_CPU=$(AVR_FREQ) -mmcu=$(MCU) -c lib/playtune.cpp -o $(BUILD_DIR)/playtune.o	
 	@avr-gcc -mmcu=atmega328p $(BUILD_DIR)/$(PROJECT_NAME).o $(BUILD_DIR)/playtune.o \
 	-o $(BUILD_DIR)/$(PROJECT_NAME).out
 	
 	@avr-objcopy -O ihex -R .eeprom $(BUILD_DIR)/$(PROJECT_NAME).out $(BUILD_DIR)/$(PROJECT_NAME).hex
 
-flash: 
+ara_build:
+	@echo "=> Building and linking" 	
+	@avr-gcc -Os -DF_CPU=$(AVR_FREQ) -mmcu=$(MCU) -c ara_main.cpp -o $(BUILD_DIR)/$(PROJECT_NAME).o
+	@avr-gcc -mmcu=atmega328p $(BUILD_DIR)/$(PROJECT_NAME).o -o $(BUILD_DIR)/$(PROJECT_NAME).out
+	@avr-objcopy -O ihex -R .eeprom $(BUILD_DIR)/$(PROJECT_NAME).out $(BUILD_DIR)/$(PROJECT_NAME).hex
+
+flash: 	
 	@echo "=> Flashing hex"
 	@cd $(BUILD_DIR)/; avrdude -F -V -c arduino -p $(MCU) -P $(FLASHER_PORT) -b 115200 \
 	-D -U flash:w:$(PROJECT_NAME).hex:i
 
-all: init src_build flash
+all: init ara_build flash
 	
 
 
