@@ -6,7 +6,7 @@
 */
 
 const int piezo_pin = 6;
-int tempo = 1000;
+int tempo = 5000;
 
 char keys[] = {'c', 'C', 'd', 'D', 'e', 'f', 'F', 'g', 'G', 'a', 'A', 'b'};
 int freq[] = {261, 277, 293, 311, 329, 349, 369, 391, 415, 440, 466, 493};
