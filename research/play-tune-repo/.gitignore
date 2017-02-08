@@ -1,0 +1,8 @@
+*.swp
+*.hex
+*.lst
+*.o
+*.out
+*.out.map
+.*.mscz
+*.bak

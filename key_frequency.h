@@ -1,7 +1,8 @@
 /*******************************************************************************
 *
 *    @file     key_frequency.h
-*    @brief    Piano key frequencies
+*    @brief    Piano key frequencies with the 49th key, the fifth A (A4), tuned to 440 Hz.
+*              Key frequencies are rounded.
 *
 ********************************************************************************/
 

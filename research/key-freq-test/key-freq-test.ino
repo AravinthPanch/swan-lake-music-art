@@ -5,7 +5,7 @@
    Date: 03/01/17
 */
 
-const int piezo_pin = 6;
+const int piezo_pin = 0;
 int tempo = 5000;
 
 char keys[] = {'c', 'C', 'd', 'D', 'e', 'f', 'F', 'g', 'G', 'a', 'A', 'b'};

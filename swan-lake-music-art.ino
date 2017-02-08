@@ -1,20 +1,41 @@
 
 /**
-   Author: Aravinth Panchadcharam
-   Description : Use key_frequency.h to generate Swan Lake
-   Date: 08/01/17
+   Author:        Aravinth Panchadcharam
+   Description:   Swan Lake Monotonic Music on ATtiny85. Monotonic notes of music are transcribed manually
+                  and played in 3rd to 5th octave of Piano key frequency with the 49th key, the fifth A (A4), tuned to 440 Hz.
+                  Arduino is used as a dev board.
+   Date:          08/01/17
 */
+
+/**
+   Target:      ATtiny85   
+   Library:     https://github.com/SpenceKonde/ATTinyCore can be installed via board manager
+   Wiring:      PBO or Physical pin 5 of ATtiny85 is connected to the piezo element   
+   
+   Build:       Select Board -> "ATtiny 25/45/85", Chip -> "ATtiny85", Clock -> "8 MHz Internal"
+   Flashing:    Use Arduino as ISP by flashing ArduinoISP firmware to Arduino UNO,
+                Connect 10uF capcitor between RESET and GND pin on Arduino,
+                Arduino +5V       --->  ATtiny85 Pin 8 (VCC)
+                Arduino Ground    --->  ATtiny85 Pin 4 (GND)
+                Arduino Pin 10    --->  ATtiny85 Pin 1 (PB5 / RESET)
+                Arduino Pin 11    --->  ATtiny85 Pin 5 (PB0 / MOSI)
+                Arduino Pin 12    --->  ATtiny85 Pin 6 (PB1 / MISO)
+                Arduino Pin 13    --->  ATtiny85 Pin 7 (PB2 / SCL)
+
+                http://www.instructables.com/id/Program-an-ATtiny-with-Arduino
+*/
+
 
 #include "key_frequency.h"
 
 /*******************************************************************************
   Local variables
 ********************************************************************************/
-const int piezo_pin = 6;
+// PB0
+const int piezo_pin = 0;
 int tempo = 140 / 4;
 
-int music_sheet[][2] =
-{
+int music_sheet[][2] = {
   {A4,  4},
   {A4,  4},
   {A4,  4},
@@ -105,8 +126,6 @@ int song_length = (sizeof(music_sheet) / sizeof(int)) / 2;
 void setup()
 {
   pinMode(piezo_pin, OUTPUT);
-  Serial.begin(9600);
-
 }
 
 // main loop
@@ -129,7 +148,7 @@ void loop()
     delay(tempo * 2 * duration);
   }
 
-// interval between music loop
+  // interval between music loop
   delay (2000);
 }
 
