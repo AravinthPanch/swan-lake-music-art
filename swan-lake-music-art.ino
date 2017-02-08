@@ -10,11 +10,11 @@
 /**
    Target:      ATtiny85   
    Library:     https://github.com/SpenceKonde/ATTinyCore can be installed via board manager
-   Wiring:      PBO or Physical pin 5 of ATtiny85 is connected to the piezo element   
+   Wiring:      PBO or Physical pin 5 of ATtiny85 is connected to the piezoceramic element   
    
    Build:       Select Board -> "ATtiny 25/45/85", Chip -> "ATtiny85", Clock -> "8 MHz Internal"
    Flashing:    Use Arduino as ISP by flashing ArduinoISP firmware to Arduino UNO,
-                Connect 10uF capcitor between RESET and GND pin on Arduino,
+                Connect 10uF capacitor between RESET and GND pin on Arduino,
                 Arduino +5V       --->  ATtiny85 Pin 8 (VCC)
                 Arduino Ground    --->  ATtiny85 Pin 4 (GND)
                 Arduino Pin 10    --->  ATtiny85 Pin 1 (PB5 / RESET)
